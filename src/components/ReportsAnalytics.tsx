@@ -78,12 +78,12 @@ const ReportsAnalytics = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Reports & Analytics</h2>
-        <div className="flex space-x-4">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Reports & Analytics</h2>
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
           <Select value={selectedEmployee} onValueChange={setSelectedEmployee}>
-            <SelectTrigger className="w-48">
+            <SelectTrigger className="w-full sm:w-48">
               <SelectValue placeholder="Select employee" />
             </SelectTrigger>
             <SelectContent>
@@ -96,7 +96,7 @@ const ReportsAnalytics = () => {
           </Select>
           
           <Select value={timeRange} onValueChange={setTimeRange}>
-            <SelectTrigger className="w-32">
+            <SelectTrigger className="w-full sm:w-32">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -109,59 +109,59 @@ const ReportsAnalytics = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
         <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium opacity-90">Avg Fatigue Score</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium opacity-90">Avg Fatigue Score</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">46</div>
+            <div className="text-xl sm:text-2xl font-bold">46</div>
             <p className="text-xs opacity-75">-3 from last week</p>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium opacity-90">Total Breaks</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium opacity-90">Total Breaks</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">245</div>
+            <div className="text-xl sm:text-2xl font-bold">245</div>
             <p className="text-xs opacity-75">This week</p>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium opacity-90">High Fatigue Alerts</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium opacity-90">High Fatigue Alerts</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
+            <div className="text-xl sm:text-2xl font-bold">12</div>
             <p className="text-xs opacity-75">-8 from last week</p>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium opacity-90">Avg Efficiency</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium opacity-90">Avg Efficiency</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">86%</div>
+            <div className="text-xl sm:text-2xl font-bold">86%</div>
             <p className="text-xs opacity-75">+2% from last week</p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
         {/* Daily Fatigue Trend */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Calendar className="w-5 h-5" />
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
               Daily Fatigue & Breaks
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <LineChart data={dailyFatigueData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="day" />
@@ -189,10 +189,10 @@ const ReportsAnalytics = () => {
         {/* Weekly Comparison */}
         <Card>
           <CardHeader>
-            <CardTitle>Weekly Employee Comparison</CardTitle>
+            <CardTitle className="text-base sm:text-lg">Weekly Employee Comparison</CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <BarChart data={weeklyFatigueData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="week" />
@@ -211,56 +211,56 @@ const ReportsAnalytics = () => {
       {/* Employee Statistics Table */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="w-5 h-5" />
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Users className="w-4 h-4 sm:w-5 sm:h-5" />
             Employee Performance Summary
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
+        <CardContent className="p-3 sm:p-6">
+          <div className="space-y-3 sm:space-y-4">
             {employeeStats.map((employee, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Users className="w-5 h-5 text-blue-600" />
+              <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 bg-gray-50 rounded-lg space-y-3 sm:space-y-0">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                   </div>
-                  <div>
-                    <div className="font-medium">{employee.name}</div>
-                    <div className="text-sm text-gray-500">
+                  <div className="min-w-0 flex-1">
+                    <div className="font-medium text-sm sm:text-base truncate">{employee.name}</div>
+                    <div className="text-xs sm:text-sm text-gray-500">
                       {employee.totalHours}h worked this week
                     </div>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-6 text-sm">
+                <div className="grid grid-cols-2 sm:flex sm:items-center gap-3 sm:gap-6 text-xs sm:text-sm">
                   <div className="text-center">
-                    <div className="text-gray-500">Avg Fatigue</div>
-                    <div className={`font-bold ${getFatigueColor(employee.avgFatigue)}`}>
+                    <div className="text-gray-500 text-xs">Avg Fatigue</div>
+                    <div className={`font-bold text-sm ${getFatigueColor(employee.avgFatigue)}`}>
                       {employee.avgFatigue}
                     </div>
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-gray-500">Trend</div>
+                    <div className="text-gray-500 text-xs">Trend</div>
                     <div className="flex justify-center">
                       {getTrendIcon(employee.trend)}
                     </div>
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-gray-500">Breaks Today</div>
-                    <div className="font-bold">{employee.breaksToday}</div>
+                    <div className="text-gray-500 text-xs">Breaks Today</div>
+                    <div className="font-bold text-sm">{employee.breaksToday}</div>
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-gray-500">Efficiency</div>
-                    <Badge className={
+                    <div className="text-gray-500 text-xs">Efficiency</div>
+                    <Badge className={`text-xs ${
                       employee.efficiency >= 90 
                         ? 'bg-green-100 text-green-800'
                         : employee.efficiency >= 80
                           ? 'bg-yellow-100 text-yellow-800'
                           : 'bg-red-100 text-red-800'
-                    }>
+                    }`}>
                       {employee.efficiency}%
                     </Badge>
                   </div>
