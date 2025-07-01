@@ -56,22 +56,22 @@ const OverviewStats = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
           <Card key={index} className="relative overflow-hidden border-0 shadow-lg bg-white">
             <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${stat.color}`} />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-xs md:text-sm font-medium text-gray-600">
                 {stat.title}
               </CardTitle>
-              <div className={`p-2 rounded-full bg-gradient-to-r ${stat.color}`}>
-                <Icon className="h-4 w-4 text-white" />
+              <div className={`p-1.5 md:p-2 rounded-full bg-gradient-to-r ${stat.color}`}>
+                <Icon className="h-3 w-3 md:h-4 md:w-4 text-white" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gray-900 mb-1">
+              <div className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
                 {stat.value}
               </div>
               <p className={`text-xs ${

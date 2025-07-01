@@ -56,19 +56,19 @@ const RecentActivities = () => {
   return (
     <Card className="shadow-lg border-0">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-900">Recent Activities</CardTitle>
+        <CardTitle className="text-base md:text-lg font-semibold text-gray-900">Recent Activities</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {activities.map((activity) => {
             const Icon = activity.icon;
             return (
-              <div key={activity.id} className="flex items-center space-x-4 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                <div className={`p-2 rounded-full ${activity.color}`}>
-                  <Icon className="h-4 w-4" />
+              <div key={activity.id} className="flex items-center space-x-3 md:space-x-4 p-2 md:p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div className={`p-1.5 md:p-2 rounded-full ${activity.color}`}>
+                  <Icon className="h-3 w-3 md:h-4 md:w-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-xs md:text-sm font-medium text-gray-900">
                     <span className="font-semibold">{activity.user}</span> {activity.action}
                   </p>
                   <p className="text-xs text-gray-500">{activity.time}</p>

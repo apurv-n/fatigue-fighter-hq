@@ -18,10 +18,12 @@ const EnhancedDashboard = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showNotifications, setShowNotifications] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const unreadNotifications = 2;
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
+    setSidebarOpen(false); // Close sidebar on mobile when selecting item
   };
 
   const handleQuickAction = (action: string) => {
@@ -48,12 +50,12 @@ const EnhancedDashboard = () => {
     switch (activeTab) {
       case 'dashboard':
         return (
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                 Welcome back, {user?.email?.split('@')[0]}!
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm md:text-base">
                 Here's what's happening with your team's wellness today.
               </p>
             </div>
@@ -68,9 +70,9 @@ const EnhancedDashboard = () => {
               onOpenSettings={() => handleQuickAction('settings')}
             />
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
               <RecentActivities />
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-lg">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-4 md:p-6 rounded-lg">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Wellness Tips</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
@@ -111,13 +113,30 @@ const EnhancedDashboard = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header 
         onNotificationClick={() => setShowNotifications(true)}
+        onMenuClick={() => setSidebarOpen(!sidebarOpen)}
         unreadCount={unreadNotifications}
       />
       
-      <div className="flex flex-1">
-        <Sidebar activeTab={activeTab} onTabChange={handleTabChange} />
+      <div className="flex flex-1 relative">
+        {/* Mobile sidebar overlay */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
         
-        <main className="flex-1 p-8 overflow-auto">
+        <div className={`
+          fixed lg:static inset-y-0 left-0 z-30 transform transition-transform duration-300 ease-in-out lg:transform-none
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        `}>
+          <Sidebar 
+            activeTab={activeTab} 
+            onTabChange={handleTabChange} 
+          />
+        </div>
+        
+        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
           {renderContent()}
         </main>
       </div>
