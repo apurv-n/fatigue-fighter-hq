@@ -128,15 +128,17 @@ const EmployeeManager = () => {
   return (
     <div className="p-4 md:p-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-900">Employee Management</h2>
+        <div className="backdrop-blur-sm bg-white/80 rounded-2xl p-4 border border-white/20 shadow-lg">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900">Employee Management</h2>
+        </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 w-full sm:w-auto shadow-lg backdrop-blur-sm border border-white/20">
               <Plus className="w-4 h-4 mr-2" />
               Add Employee
             </Button>
           </DialogTrigger>
-          <DialogContent className="w-[95vw] max-w-md">
+          <DialogContent className="w-[95vw] max-w-md backdrop-blur-lg bg-white/95 border border-white/30">
             <DialogHeader>
               <DialogTitle>
                 {editingEmployee ? 'Edit Employee' : 'Add New Employee'}
@@ -150,6 +152,7 @@ const EmployeeManager = () => {
                   value={formData.name}
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   required
+                  className="backdrop-blur-sm bg-white/80"
                 />
               </div>
               <div>
@@ -160,6 +163,7 @@ const EmployeeManager = () => {
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   required
+                  className="backdrop-blur-sm bg-white/80"
                 />
               </div>
               <div>
@@ -169,6 +173,7 @@ const EmployeeManager = () => {
                   value={formData.department}
                   onChange={(e) => setFormData(prev => ({ ...prev, department: e.target.value }))}
                   required
+                  className="backdrop-blur-sm bg-white/80"
                 />
               </div>
               <div>
@@ -178,9 +183,10 @@ const EmployeeManager = () => {
                   value={formData.position}
                   onChange={(e) => setFormData(prev => ({ ...prev, position: e.target.value }))}
                   required
+                  className="backdrop-blur-sm bg-white/80"
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                 {editingEmployee ? 'Update Employee' : 'Add Employee'}
               </Button>
             </form>
@@ -190,15 +196,15 @@ const EmployeeManager = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {employees.map((employee) => (
-          <Card key={employee.id} className="hover:shadow-lg transition-shadow">
+          <Card key={employee.id} className="hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-lg bg-white/80 border border-white/30 shadow-xl">
             <CardHeader className="flex flex-row items-center space-y-0 pb-2">
               <div className="flex items-center space-x-2 flex-1">
-                <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center backdrop-blur-sm shadow-md">
                   <User className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <CardTitle className="text-base md:text-lg truncate">{employee.name}</CardTitle>
-                  <Badge className={`${getStatusColor(employee.status)} text-xs`}>
+                  <Badge className={`${getStatusColor(employee.status)} text-xs backdrop-blur-sm`}>
                     {employee.status}
                   </Badge>
                 </div>
@@ -208,6 +214,7 @@ const EmployeeManager = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => handleEdit(employee)}
+                  className="hover:bg-white/60 backdrop-blur-sm"
                 >
                   <Edit className="w-3 h-3 md:w-4 md:h-4" />
                 </Button>
@@ -215,6 +222,7 @@ const EmployeeManager = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => handleDelete(employee.id)}
+                  className="hover:bg-white/60 backdrop-blur-sm"
                 >
                   <Trash2 className="w-3 h-3 md:w-4 md:h-4" />
                 </Button>
@@ -227,7 +235,7 @@ const EmployeeManager = () => {
                   <span className="font-medium">{employee.position}</span>
                   <span className="text-gray-500 block md:inline"> • {employee.department}</span>
                 </p>
-                <div className="flex justify-between items-center pt-2">
+                <div className="flex justify-between items-center pt-2 p-2 rounded-lg backdrop-blur-sm bg-white/40">
                   <span className="text-xs md:text-sm font-medium">Fatigue Score:</span>
                   <span className={`text-lg font-bold ${getFatigueColor(employee.fatigueScore)}`}>
                     {employee.fatigueScore}/100

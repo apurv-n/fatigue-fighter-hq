@@ -54,7 +54,7 @@ const RecentActivities = () => {
   ];
 
   return (
-    <Card className="shadow-lg border-0">
+    <Card className="shadow-xl border-0 backdrop-blur-lg bg-white/80">
       <CardHeader>
         <CardTitle className="text-base md:text-lg font-semibold text-gray-900">Recent Activities</CardTitle>
       </CardHeader>
@@ -63,8 +63,8 @@ const RecentActivities = () => {
           {activities.map((activity) => {
             const Icon = activity.icon;
             return (
-              <div key={activity.id} className="flex items-center space-x-3 md:space-x-4 p-2 md:p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                <div className={`p-1.5 md:p-2 rounded-full ${activity.color}`}>
+              <div key={activity.id} className="flex items-center space-x-3 md:space-x-4 p-2 md:p-3 rounded-xl backdrop-blur-sm bg-white/60 hover:bg-white/80 transition-all duration-200 hover:shadow-md">
+                <div className={`p-1.5 md:p-2 rounded-full ${activity.color} backdrop-blur-sm shadow-sm`}>
                   <Icon className="h-3 w-3 md:h-4 md:w-4" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -73,7 +73,7 @@ const RecentActivities = () => {
                   </p>
                   <p className="text-xs text-gray-500">{activity.time}</p>
                 </div>
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-xs backdrop-blur-sm bg-white/70">
                   {activity.type}
                 </Badge>
               </div>

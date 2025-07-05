@@ -58,7 +58,7 @@ const QuickActions: React.FC<QuickActionsProps> = ({
   ];
 
   return (
-    <Card className="shadow-lg border-0">
+    <Card className="shadow-xl border-0 backdrop-blur-lg bg-white/80">
       <CardHeader>
         <CardTitle className="text-base md:text-lg font-semibold text-gray-900">Quick Actions</CardTitle>
       </CardHeader>
@@ -70,10 +70,10 @@ const QuickActions: React.FC<QuickActionsProps> = ({
               <Button
                 key={index}
                 variant="outline"
-                className="h-auto p-3 md:p-4 flex flex-col items-center space-y-2 hover:shadow-md transition-all duration-200 border-0 bg-gradient-to-br from-gray-50 to-white"
+                className="h-auto p-3 md:p-4 flex flex-col items-center space-y-2 hover:shadow-xl transition-all duration-300 border-0 backdrop-blur-md bg-white/60 hover:bg-white/80 hover:scale-105"
                 onClick={action.onClick}
               >
-                <div className={`p-2 md:p-3 rounded-full bg-gradient-to-r ${action.color}`}>
+                <div className={`p-2 md:p-3 rounded-full bg-gradient-to-r ${action.color} shadow-lg backdrop-blur-sm`}>
                   <Icon className="h-4 w-4 md:h-5 md:w-5 text-white" />
                 </div>
                 <div className="text-center">

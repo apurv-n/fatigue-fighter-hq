@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col h-full">
+    <aside className="w-64 backdrop-blur-lg bg-white/80 border-r border-white/30 flex flex-col h-full shadow-xl">
       <nav className="flex-1 px-3 md:px-4 py-4 md:py-6 space-y-1 md:space-y-2">
         {menuItems.map((item) => {
           const Icon = item.icon;
@@ -38,10 +38,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
               key={item.id}
               variant={activeTab === item.id ? "default" : "ghost"}
               className={cn(
-                "w-full justify-start h-10 md:h-11 text-sm font-medium",
+                "w-full justify-start h-10 md:h-11 text-sm font-medium transition-all duration-200",
                 activeTab === item.id 
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md" 
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg backdrop-blur-sm border border-white/20" 
+                  : "text-gray-700 hover:bg-white/60 hover:backdrop-blur-sm hover:shadow-md"
               )}
               onClick={() => onTabChange(item.id)}
             >
@@ -52,8 +52,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
         })}
       </nav>
       
-      <div className="p-3 md:p-4 border-t border-gray-200">
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-3 md:p-4 rounded-lg">
+      <div className="p-3 md:p-4 border-t border-white/30">
+        <div className="backdrop-blur-md bg-gradient-to-r from-blue-50/80 to-purple-50/80 p-3 md:p-4 rounded-xl border border-white/30 shadow-lg">
           <h4 className="text-sm font-semibold text-gray-800 mb-1">Pro Tip</h4>
           <p className="text-xs text-gray-600">
             Take regular breaks to maintain optimal productivity and wellness.

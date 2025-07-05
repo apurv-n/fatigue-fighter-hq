@@ -60,13 +60,13 @@ const OverviewStats = () => {
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
-          <Card key={index} className="relative overflow-hidden border-0 shadow-lg bg-white">
+          <Card key={index} className="relative overflow-hidden border-0 shadow-xl backdrop-blur-lg bg-white/80 hover:bg-white/90 transition-all duration-300 hover:shadow-2xl hover:scale-105">
             <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${stat.color}`} />
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-xs md:text-sm font-medium text-gray-600">
                 {stat.title}
               </CardTitle>
-              <div className={`p-1.5 md:p-2 rounded-full bg-gradient-to-r ${stat.color}`}>
+              <div className={`p-1.5 md:p-2 rounded-full bg-gradient-to-r ${stat.color} shadow-lg backdrop-blur-sm`}>
                 <Icon className="h-3 w-3 md:h-4 md:w-4 text-white" />
               </div>
             </CardHeader>
